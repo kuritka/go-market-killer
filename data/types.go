@@ -69,19 +69,18 @@ var Periods = struct {
 }
 
 type Quote struct {
-	Symbol    string
-	Period    Period
-	DateTime  time.Time
-	Open      float64
-	Close     float64
-	High      float64
-	Low       float64
-	Volume    int
-	Interrest int
+	Open     float64
+	Close    float64
+	Low      float64
+	High     float64
+	Volume   int
+	Interest int
+	Code     string
+	DateTime time.Time
 }
 
 func NewQuote() Quote {
-	return Quote{Period: Periods.Unknown}
+	return Quote{}
 }
 
 type Inflation struct {
@@ -172,4 +171,7 @@ var ContractSpecifications = map[string]ContractSpecification{
 	"ZW": {"CBOT", "HKNUZ", 50, "ZW", "Wheat", Categories.GrainsAndOilseeds, 5000, "bu"},
 }
 
-//type Model struct
+type Model struct {
+	ContractSpecification ContractSpecification
+	WeeklyData            []Quote
+}
